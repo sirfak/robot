@@ -1,5 +1,7 @@
 package com.whispir;
 
+import com.whispir.model.Position;
+
 public class CommandProcessor implements ICommandProcessor {
 
 	private String command;

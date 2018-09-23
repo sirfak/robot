@@ -1,4 +1,4 @@
-package com.whispir;
+package com.whispir.model;
 
 import java.util.Arrays;
 

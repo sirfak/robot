@@ -1,4 +1,4 @@
-import com.whispir.Validator;
+import com.whispir.model.Validator;
 import com.whispir.exception.InvalidCommandException;
 import org.junit.Assert;
 import org.junit.Test;

@@ -1,6 +1,7 @@
 package com.whispir;
 
 import com.whispir.exception.InvalidCommandException;
+import com.whispir.model.Position;
 
 import java.util.Arrays;
 import java.util.List;

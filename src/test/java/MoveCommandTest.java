@@ -1,6 +1,6 @@
 import com.whispir.CommandProcessor;
 import com.whispir.ICommandProcessor;
-import com.whispir.Position;
+import com.whispir.model.Position;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;

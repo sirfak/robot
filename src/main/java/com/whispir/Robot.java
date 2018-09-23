@@ -1,6 +1,7 @@
 package com.whispir;
 
 import com.whispir.exception.InvalidCommandException;
+import com.whispir.model.Validator;
 
 public class Robot {
 	

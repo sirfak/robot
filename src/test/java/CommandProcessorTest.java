@@ -1,12 +1,11 @@
 import com.whispir.CommandProcessor;
 import com.whispir.Executor;
 import com.whispir.ICommandProcessor;
-import com.whispir.Position;
-import org.junit.Assert;
-import org.junit.Before;
+import com.whispir.model.Position;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
@@ -48,8 +47,7 @@ public class CommandProcessorTest {
     }
 
     @Test
-    public void it_should_ignore_all_commands_until_first_place_command()
-    {
+    public void it_should_ignore_all_commands_until_first_place_command(){
 
         final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
@@ -65,10 +63,11 @@ public class CommandProcessorTest {
         currentPost=executor.execute(commands);
 
 
-        assertEquals("",outContent); //REPORT command ignored hence nothing printed
+        assertEquals("",outContent.toString()); //REPORT command ignored hence nothing printed
         assertTrue(currentPost.getX()==2);
         assertTrue(currentPost.getY()==3);
         assertTrue(currentPost.getFacing().equals("WEST"));
+
 
 
     }
