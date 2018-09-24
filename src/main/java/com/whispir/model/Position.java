@@ -11,11 +11,10 @@ public class Position {
 	
 
 	public Position(Integer xPos, Integer yPos, String facing) {
+
 		this.x=xPos;
 		this.y=yPos;
 		this.facing=facing;
-			
-		
 	}
 
 	public Integer getX() {
@@ -42,24 +41,32 @@ public class Position {
 		this.facing = facing;
 	}
 
+
 	public int toFacePos(String facePos)
 	{
-		int pos=0;
+		int index=0;
 		for (int i=0;i<direction.length;i++) {
+
 			if(facePos.equalsIgnoreCase(direction[i]))
 			{
-				pos=i;
+				index=i;
 				break;
 			}
 		}
 	
-		return pos;
+		return index;
 	}
-	
+
+	/**
+	 * converts index into string direction
+	 * @param facePos current diction as in index
+	 * @return direction name in string corresponding to index
+	 */
 	public String toFacing(int facePos){
-		if(facePos<=direction.length || facePos>direction.length)
-			
+
+		if(facePos<direction.length && facePos>=0)
 			return direction[facePos];
+
 		return facing;
 	}
 	
