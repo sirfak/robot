@@ -1,4 +1,4 @@
-# robot
+# ROBOT
 Simulates the movement of robot on the table of 5x5 unit by executing following commands.Ignores any command that cause robot to fall
 
 Commands:  
