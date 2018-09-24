@@ -31,4 +31,9 @@ mvn exec:java -D"exec.mainClass"="com.whispir.Main" -Dexec.args="command.json"
 
 ## RESULT  
 
+#IntelliJ
+![Alt text](IntelliJ-RunResult.png?raw=true "Title")
+
+
+#Maven
 ![Alt text](mvnexecution.JPG?raw=true "Title")
