@@ -1,11 +1,11 @@
 import com.whispir.CommandProcessor;
 import com.whispir.Executor;
 import com.whispir.ICommandProcessor;
+import com.whispir.exception.InvalidCommandException;
 import com.whispir.model.Position;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
@@ -37,7 +37,7 @@ public class CommandProcessorTest {
 
 
 
-        currentPost=executor.execute(commands);
+        currentPost=executor.executeCommands(commands);
 
         assertTrue(currentPost.getX()==2);
         assertTrue(currentPost.getY()==3);
@@ -60,7 +60,7 @@ public class CommandProcessorTest {
 
 
 
-        currentPost=executor.execute(commands);
+        currentPost=executor.executeCommands(commands);
 
 
         assertEquals("",outContent.toString()); //REPORT command ignored hence nothing printed
@@ -68,10 +68,25 @@ public class CommandProcessorTest {
         assertTrue(currentPost.getY()==3);
         assertTrue(currentPost.getFacing().equals("WEST"));
 
+    }
 
+    @Test
+    public void it_should_accept_valid_json_file()
+    {
+        ICommandProcessor commandProcessor = new CommandProcessor();
+        String[] commandArg= new String[] {"command.json"};
+        commandProcessor.readCommandFromFile(commandArg);
 
     }
 
+    @Test(expected = InvalidCommandException.class)
+    public void it_should_throw_exception_for_missing_file()
+    {
+        ICommandProcessor commandProcessor = new CommandProcessor();
+        String[] commandArg= new String[] {"command1.json"};
+        commandProcessor.readCommandFromFile(commandArg);
+
+    }
 
 
 

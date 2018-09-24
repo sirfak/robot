@@ -8,13 +8,13 @@ public class Validator {
 	
 	public boolean validateCommand(String command)
 	{
-		boolean isValid=false;
+		boolean isCommandValid=false;
 		String[] formattedCommand= (command.split(","));
 
 		if(formattedCommand.length==1)
 		{
 
-			isValid =formattedCommand[0].toUpperCase().equals("MOVE") ||
+			isCommandValid =formattedCommand[0].toUpperCase().equals("MOVE") ||
 					formattedCommand[0].toUpperCase().equals("REPORT") ||
 					formattedCommand[0].toUpperCase().equals("LEFT") ||
 					formattedCommand[0].toUpperCase().equals("RIGHT");
@@ -23,18 +23,17 @@ public class Validator {
 
 		if(formattedCommand.length==3)
 		{
+			//should be place command PLACE 0,0,NORTH
 			String firstPartCommand=formattedCommand[0];
 			String yPositionCommand=formattedCommand[1];
 			String directionCmd=formattedCommand[2];
-			isValid = 	isPlaceCommandValid(firstPartCommand) &&
-					isPositionValid(firstPartCommand.substring(6, 7),yPositionCommand) &&
+
+			isCommandValid = 	isPlaceCommandValid(firstPartCommand) &&
+					isXandYPositionValid(firstPartCommand.substring(6, 7),yPositionCommand) &&// check if x and y are numbers once place command is valid
 					isDirectionValid(directionCmd);
 		}
-		
-		
-		
-		
-		return isValid;
+
+		return isCommandValid;
 	}
 	
 	private boolean isDirectionValid(String directionCmd) {
@@ -43,27 +42,26 @@ public class Validator {
 		
 	}
 
-	private boolean isPositionValid(String strXPos, String strYPos) {
-		boolean isNumericPos=true;
+	private boolean isXandYPositionValid(String strXPos, String strYPos) {
+		boolean isNumericPosition=true;
 		
 		try {
 			Double xPos=new Double(strXPos);
 			Double yPos=new Double(strYPos);
 			
-		 isNumericPos= xPos>=0&&xPos<=5 &&				 
-				 		yPos>=0&&yPos<=5;
+		 isNumericPosition= xPos>=0&&xPos<=5 &&	yPos>=0&&yPos<=5;
 		}
 		catch(NumberFormatException nfe)
 		{
-			isNumericPos=false;
-			throw new InvalidCommandException("Invalid command");
+			throw new InvalidCommandException("X or Y position should be a valid integer between (and including) 0 and 5");
 		}
 		
-		return isNumericPos;
+		return isNumericPosition;
 	}
 
 	private boolean isPlaceCommandValid(String command) {
-		
+
+	    //PLACE command should be PLACE 0,0,EAST
 		return 
 				command.length()==7 &&
 				command.substring(0, 5).toUpperCase().equals("PLACE");

@@ -9,6 +9,7 @@ public interface ICommandProcessor {
 	public Position left(Position pos);
 	public Position right(Position pos);
 	public Position report(Position pos);
+	public String[] readCommandFromFile(String commandArugment[]);
 	
 	
 }
